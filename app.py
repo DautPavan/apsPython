@@ -59,11 +59,15 @@ def index():
     texto.append('<div class="container">')
     texto.append('<div class="row">')
     for notice in mongo.db.Noticia.find():
-        texto.append(f'<div class="col-3">')
-        texto.append(f'<div class="card">')
-        texto.append(f'<h5 class="card-title">{notice["uri"]}</h5>')
+        texto.append(f'<div class="col-3" style="margin-top: 10px;margin-bottom: 10px;">')
+        texto.append(f'<div class="card border-light" mb-3>')
+        texto.append(f'<h5 class="card-header" style="text-align:center;">{notice["title"]}</h5>')
+        texto.append(f'<img class="card-img-top" src="{notice["img"]}" alt="Card image cap">')
+        texto.append(f'<div class="card-body">')
         texto.append(f'<p class="card-text">{notice["dado"]}</p>')
+        texto.append(f'<p style="font-size: 10px;text-align:left">{notice["date"]}</p>')
         texto.append(f'<a href="{notice["uri"]}" class="btn btn-primary">Veja mais</a>')
+        texto.append(f'</div>')
         texto.append(f'</div>')
         texto.append(f'</div>')        
     
