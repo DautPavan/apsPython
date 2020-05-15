@@ -191,7 +191,7 @@ def pguol():
 
     texto.append('<div class="container">')
     texto.append('<div class="row">')
-    for notice in mongo.db.Noticia.find({'tipoSite': 'uol'}).sort('date', -1).sort('title', 1):
+    for notice in mongo.db.Noticia.find({'tipoSite': 'uol'}).sort('date', -1):
         texto.append(f'<div class="col-3" style="margin-top: 10px;margin-bottom: 10px;">')
         texto.append(f'<div class="card border-light" mb-3>')
         texto.append(f'<h5 class="card-header" style="text-align:center;">{notice["title"]}</h5>')
