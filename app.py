@@ -117,7 +117,6 @@ def index():
     uol()
     olharDigital()
     texto = ['<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">\n']    
-    mongo = PyMongo(app)
     
     texto.append('<div class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar" style="background-color: #563d7c">')
     
@@ -144,7 +143,8 @@ def index():
 
     texto.append('<div class="container">')
     texto.append('<div class="row">')
-    for notice in mongo.db.Noticia.find().sort('date', -1).sort('title', 1):
+    mongo = PyMongo(app)
+    for notice in mongo.db.Noticia.find().sort('date', -1):
         texto.append(f'<div class="col-3" style="margin-top: 10px;margin-bottom: 10px;">')
         texto.append(f'<div class="card border-light" mb-3>')
         texto.append(f'<h5 class="card-header" style="text-align:center;">{notice["title"]}</h5>')
@@ -237,7 +237,7 @@ def pgveja():
 
     texto.append('<div class="container">')
     texto.append('<div class="row">')
-    for notice in mongo.db.Noticia.find({'tipoSite': 'veja'}).sort('date', -1).sort('title', 1):
+    for notice in mongo.db.Noticia.find({'tipoSite': 'veja'}).sort('date', -1):
         texto.append(f'<div class="col-3" style="margin-top: 10px;margin-bottom: 10px;">')
         texto.append(f'<div class="card border-light" mb-3>')
         texto.append(f'<h5 class="card-header" style="text-align:center;">{notice["title"]}</h5>')
@@ -284,7 +284,7 @@ def pgolhard():
 
     texto.append('<div class="container">')
     texto.append('<div class="row">')
-    for notice in mongo.db.Noticia.find({'tipoSite': 'olharDigital'}).sort('date', -1).sort('title', 1):
+    for notice in mongo.db.Noticia.find({'tipoSite': 'olharDigital'}).sort('date', -1):
         texto.append(f'<div class="col-3" style="margin-top: 10px;margin-bottom: 10px;">')
         texto.append(f'<div class="card border-light" mb-3>')
         texto.append(f'<h5 class="card-header" style="text-align:center;">{notice["title"]}</h5>')
